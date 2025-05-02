@@ -124,7 +124,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <button
-                onClick={() => router.push('/optimize')}
+                onClick={() => router.push('/gettingStarted')} // Updated to navigate to the GettingStarted page
                 className="inline-flex items-center px-6 py-3 border border-zinc-700 rounded-full text-base text-white bg-zinc-800 hover:bg-zinc-700 focus:outline-none transition duration-150 ease-in-out"
               >
                 Get Started
@@ -217,84 +217,14 @@ export default function Home() {
             >
               <button
                 onClick={() => setSelectedButton(button)}
-                className="w-full h-full bg-zinc-900 border border-zinc-800 rounded-xl p-8 transition-all duration-300 hover:bg-zinc-800 text-white group-hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] flex flex-col items-center text-center"
+                className="w-full h-full bg-zinc-800 text-white rounded-lg p-4 hover:bg-zinc-700 transition duration-150 ease-in-out"
               >
-                <div className="text-4xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
-                  {button.icon}
-                </div>
-                <h2 className="text-2xl mb-3">{button.title}</h2>
-                <p className="text-zinc-400 group-hover:text-zinc-300 font-sans">{button.shortDescription}</p>
+                {button.title}
               </button>
             </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Card Modal */}
-      <AnimatePresence>
-        {selectedButton && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={cardVariants}
-          >
-            <motion.div
-              className="bg-zinc-800 rounded-lg p-6 max-w-md w-full text-white"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h2 className="text-2xl mb-4">{selectedButton.title}</h2>
-              <p className="text-zinc-400 mb-6">{selectedButton.detailedDescription}</p>
-              <button
-                onClick={() => setSelectedButton(null)}
-                className="px-4 py-2 bg-orange-500 rounded-full text-white hover:bg-orange-600 transition"
-              >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Features Section */}
-      <div className="border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 border border-zinc-800 rounded-xl bg-zinc-900 hover:bg-zinc-800 transition-colors duration-300 text-center">
-              <h3 className="text-xl mb-3 text-white">Easy to Use</h3>
-              <p className="text-zinc-400 font-sans">Simple and intuitive platform for all your hackathon needs</p>
-            </div>
-            <div className="p-6 border border-zinc-800 rounded-xl bg-zinc-900 hover:bg-zinc-800 transition-colors duration-300 text-center">
-              <h3 className="text-xl mb-3 text-white">Secure Platform</h3>
-              <p className="text-zinc-400 font-sans">Your data is protected with enterprise-grade security</p>
-            </div>
-            <div className="p-6 border border-zinc-800 rounded-xl bg-zinc-900 hover:bg-zinc-800 transition-colors duration-300 text-center">
-              <h3 className="text-xl mb-3 text-white">24/7 Support</h3>
-              <p className="text-zinc-400 font-sans">Round-the-clock assistance for all participants</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center space-y-4">
-            <p className="text-zinc-400 text-center">
-              © 2024 HackathonHub
-            </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-zinc-400 hover:text-white transition-colors">Terms</a>
-              <a href="#" className="text-zinc-400 hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="text-zinc-400 hover:text-white transition-colors">Contact</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
