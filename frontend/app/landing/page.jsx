@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -217,13 +217,38 @@ export default function Home() {
             >
               <button
                 onClick={() => setSelectedButton(button)}
-                className="w-full h-full bg-zinc-800 text-white rounded-lg p-4 hover:bg-zinc-700 transition duration-150 ease-in-out"
+                className="w-full h-full bg-transparent text-[#afa18f] rounded-lg p-6 hover:bg-zinc-700 hover:text-white transition duration-150 ease-in-out shadow-md"
               >
-                {button.title}
+                <div className="flex items-center space-x-4">
+                  <span className="text-2xl">{button.icon}</span>
+                  <h3 className="text-lg font-semibold">{button.title}</h3>
+                </div>
+                <p className="text-sm text-zinc-400 mt-2">{button.shortDescription}</p>
               </button>
             </motion.div>
           ))}
         </div>
+
+        {/* Render Selected Button Details */}
+        {selectedButton && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.9 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="mt-8 bg-zinc-800 text-white rounded-lg p-8 shadow-lg"
+          >
+            <h2 className="text-3xl font-bold mb-4">{selectedButton.title}</h2>
+            <p className="text-zinc-400 mb-6">{selectedButton.detailedDescription}</p>
+            <Link
+              href={selectedButton.path}
+              className="inline-flex items-center px-6 py-3 text-[#afa18f] bg-transparent rounded-full hover:bg-zinc-700 hover:text-white focus:outline-none transition duration-150 ease-in-out"
+            >
+              Learn More
+              <ArrowUpRight className="ml-2 h-4 w-4" />
+            </Link>
+          </motion.div>
+        )}
       </div>
     </main>
   );
